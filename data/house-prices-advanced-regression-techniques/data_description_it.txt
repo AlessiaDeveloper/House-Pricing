@@ -1,0 +1,602 @@
+HOUSE PRICES — DESCRIZIONE DELLE VARIABILI IN ITALIANO
+
+Traduzione di data_description.txt. I nomi delle variabili e i codici delle
+categorie sono mantenuti come nel documento originale. Le note aggiuntive
+servono a chiarire il significato dei termini e le differenze rispetto ai CSV.
+
+NOTE PER LA LETTURA
+
+- Le misure restano nelle unità originali: non sono state convertite nei CSV.
+  1 piede (ft) = 0,3048 metri.
+  1 piede quadrato (SF o sq ft) = circa 0,092903 metri quadrati.
+  1 pollice (inch) = 2,54 centimetri.
+- Nella terminologia americana, "first floor" corrisponde al piano terra;
+  "second floor" corrisponde al primo piano sopra il piano terra.
+  Il numero di piani delle abitazioni si riferisce ai piani fuori terra.
+- "Finished" indica uno spazio rifinito/completato; "unfinished" indica uno
+  spazio non rifinito. Non implica automaticamente l'abitabilità legale.
+- "Basement" indica il piano interrato o seminterrato.
+- Un "full bathroom" è un bagno completo, con vasca o doccia; un "half bathroom"
+  è un bagno di servizio, normalmente con WC e lavabo ma senza vasca/doccia.
+- NA può indicare l'assenza reale di una caratteristica, quando specificato
+  nella relativa voce: ad esempio, nessun garage o nessuna piscina. In lettura,
+  pandas può interpretarlo come un valore mancante: consultare la descrizione
+  prima di decidere come trattarlo. La categoria testuale None compare, per
+  esempio, in MasVnrType e indica l'assenza del rivestimento.
+- MSSubClass contiene codici di categorie, anche se è rappresentata da numeri.
+- Il documento originale usa Bedroom e Kitchen; nei CSV le colonne si chiamano
+  rispettivamente BedroomAbvGr e KitchenAbvGr.
+- Due colonne dei CSV non sono descritte nel documento originale:
+  Id — identificativo della casa.
+  SalePrice — prezzo di vendita in dollari, presente solo in train.csv;
+              è la variabile da prevedere.
+
+
+MSSubClass: Identifica il tipo di abitazione oggetto della vendita.
+
+        20      Un piano, costruita dal 1946 in poi, qualsiasi stile
+        30      Un piano, costruita nel 1945 o prima
+        40      Un piano con sottotetto rifinito, qualsiasi epoca
+        45      Un piano e mezzo, livello parziale non rifinito, qualsiasi epoca
+        50      Un piano e mezzo, livello parziale rifinito, qualsiasi epoca
+        60      Due piani, costruita dal 1946 in poi
+        70      Due piani, costruita nel 1945 o prima
+        75      Due piani e mezzo, qualsiasi epoca
+        80      Piani sfalsati (split-level) o più livelli
+        85      Ingresso su livello intermedio (split-foyer)
+        90      Duplex: edificio con due abitazioni, qualsiasi stile ed epoca
+       120      Un piano in un PUD, costruita dal 1946 in poi
+       150      Un piano e mezzo in un PUD, qualsiasi epoca
+       160      Due piani in un PUD, costruita dal 1946 in poi
+       180      Più livelli in un PUD, inclusi split-level e split-foyer
+       190      Casa convertita in due abitazioni, qualsiasi stile ed epoca
+
+  Nota: PUD significa Planned Unit Development, un complesso residenziale
+  sviluppato secondo un progetto unitario, spesso con spazi o servizi comuni.
+  Negli edifici split-level i piani sono sfalsati e collegati da brevi scale;
+  negli split-foyer l'ingresso è a un livello intermedio tra due piani.
+
+MSZoning: Classificazione generale della destinazione urbanistica della proprietà.
+
+       A        Agricola
+       C        Commerciale
+       FV       Residenziale "Floating Village"
+       I        Industriale
+       RH       Residenziale ad alta densità
+       RL       Residenziale a bassa densità
+       RP       Residenziale a bassa densità, tipo parco
+       RM       Residenziale a media densità
+
+  Nota: nel CSV la categoria commerciale è scritta C (all).
+
+LotFrontage: Lunghezza del fronte del lotto lungo la strada, in piedi.
+
+LotArea: Superficie del lotto, in piedi quadrati.
+
+Street: Tipo di strada di accesso alla proprietà.
+
+       Grvl     Ghiaia
+       Pave     Pavimentata
+
+Alley: Tipo di vicolo di accesso alla proprietà.
+
+       Grvl     Ghiaia
+       Pave     Pavimentato
+       NA       Nessun accesso da vicolo
+
+LotShape: Forma generale del lotto.
+
+       Reg      Regolare
+       IR1      Leggermente irregolare
+       IR2      Moderatamente irregolare
+       IR3      Irregolare
+
+LandContour: Conformazione del terreno della proprietà.
+
+       Lvl      Quasi pianeggiante
+       Bnk      In scarpata: dislivello rapido e marcato dalla strada all'edificio
+       HLS      Su un pendio: pendenza significativa da un lato all'altro
+       Low      In una depressione del terreno
+
+Utilities: Tipo di utenze disponibili.
+
+       AllPub   Tutte le utenze pubbliche: elettricità, gas, acqua e fognatura
+       NoSewr   Elettricità, gas e acqua; fossa settica al posto della fognatura
+       NoSeWa   Solo elettricità e gas
+       ELO      Solo elettricità
+
+LotConfig: Posizione e configurazione del lotto rispetto alle strade.
+
+       Inside   Lotto interno all'isolato
+       Corner   Lotto d'angolo
+       CulDSac  Lotto in fondo a una strada senza uscita (cul-de-sac)
+       FR2      Lotto affacciato su strada su due lati
+       FR3      Lotto affacciato su strada su tre lati
+
+LandSlope: Pendenza del terreno della proprietà.
+
+       Gtl      Lieve
+       Mod      Moderata
+       Sev      Forte
+
+Neighborhood: Quartiere o zona all'interno della città di Ames.
+
+       Blmngtn  Bloomington Heights
+       Blueste  Bluestem
+       BrDale   Briardale
+       BrkSide  Brookside
+       ClearCr  Clear Creek
+       CollgCr  College Creek
+       Crawfor  Crawford
+       Edwards  Edwards
+       Gilbert  Gilbert
+       IDOTRR   Zona Iowa DOT e ferrovia
+       MeadowV  Meadow Village
+       Mitchel  Mitchell
+       Names    North Ames
+       NoRidge  Northridge
+       NPkVill  Northpark Villa
+       NridgHt  Northridge Heights
+       NWAmes   Northwest Ames
+       OldTown  Old Town
+       SWISU    Zona a sud e a ovest della Iowa State University
+       Sawyer   Sawyer
+       SawyerW  Sawyer West
+       Somerst  Somerset
+       StoneBr  Stone Brook
+       Timber   Timberland
+       Veenker  Veenker
+
+  Nota: il codice Names del documento originale è scritto NAmes nei CSV.
+  I nomi propri dei quartieri sono mantenuti in inglese.
+
+Condition1: Vicinanza a elementi esterni che caratterizzano la posizione.
+
+       Artery   Adiacente a una strada principale di scorrimento
+       Feedr    Adiacente a una strada di raccordo verso la viabilità principale
+       Norm     Situazione normale
+       RRNn     Entro 200 piedi da una ferrovia orientata nord-sud
+       RRAn     Adiacente a una ferrovia orientata nord-sud
+       PosN     Vicina a un elemento favorevole esterno, come un parco o area verde
+       PosA     Adiacente a un elemento favorevole esterno
+       RRNe     Entro 200 piedi da una ferrovia orientata est-ovest
+       RRAe     Adiacente a una ferrovia orientata est-ovest
+
+Condition2: Seconda condizione di vicinanza, se è presente più di una condizione.
+
+       Artery   Adiacente a una strada principale di scorrimento
+       Feedr    Adiacente a una strada di raccordo verso la viabilità principale
+       Norm     Situazione normale
+       RRNn     Entro 200 piedi da una ferrovia orientata nord-sud
+       RRAn     Adiacente a una ferrovia orientata nord-sud
+       PosN     Vicina a un elemento favorevole esterno, come un parco o area verde
+       PosA     Adiacente a un elemento favorevole esterno
+       RRNe     Entro 200 piedi da una ferrovia orientata est-ovest
+       RRAe     Adiacente a una ferrovia orientata est-ovest
+
+BldgType: Tipologia dell'edificio residenziale.
+
+       1Fam     Casa unifamiliare indipendente
+       2FmCon   Casa originariamente unifamiliare, convertita in due abitazioni
+       Duplx    Duplex: edificio con due abitazioni
+       TwnhsE   Casa a schiera di testa
+       TwnhsI   Casa a schiera intermedia
+
+HouseStyle: Configurazione dei piani dell'abitazione.
+
+       1Story   Un piano
+       1.5Fin   Un piano e mezzo, livello superiore parziale rifinito
+       1.5Unf   Un piano e mezzo, livello superiore parziale non rifinito
+       2Story   Due piani
+       2.5Fin   Due piani e mezzo, livello parziale rifinito
+       2.5Unf   Due piani e mezzo, livello parziale non rifinito
+       SFoyer   Ingresso su livello intermedio (split-foyer)
+       SLvl     Piani sfalsati (split-level)
+
+  Nota: per 2.5Fin e 2.5Unf l'originale ripete la dicitura "2nd level";
+  qui è resa come "livello parziale" per evitare ambiguità sul piano indicato.
+
+OverallQual: Valutazione complessiva della qualità dei materiali e delle finiture.
+
+       10       Eccellente al massimo livello
+       9        Eccellente
+       8        Molto buona
+       7        Buona
+       6        Sopra la media
+       5        Nella media
+       4        Sotto la media
+       3        Mediocre
+       2        Scarsa
+       1        Molto scarsa
+
+OverallCond: Valutazione complessiva dello stato di conservazione dell'abitazione.
+
+       10       Eccellente al massimo livello
+       9        Eccellente
+       8        Molto buono
+       7        Buono
+       6        Sopra la media
+       5        Nella media
+       4        Sotto la media
+       3        Mediocre
+       2        Scarso
+       1        Molto scarso
+
+YearBuilt: Anno di costruzione originale.
+
+YearRemodAdd: Anno della ristrutturazione o dell'ampliamento; coincide con l'anno
+  di costruzione se non ci sono state ristrutturazioni o aggiunte.
+
+RoofStyle: Forma del tetto.
+
+       Flat     Piano
+       Gable    A due falde
+       Gambrel  A doppia pendenza per lato, tipico dei fienili americani
+       Hip      A padiglione
+       Mansard  Mansardato
+       Shed     A una falda
+
+RoofMatl: Materiale di copertura del tetto.
+
+       ClyTile  Argilla o tegole
+       CompShg  Scandole standard in materiale composito
+       Membran  Membrana
+       Metal    Metallo
+       Roll     Copertura in rotoli
+       Tar&Grv  Catrame e ghiaia
+       WdShake  Scandole di legno spaccato
+       WdShngl  Scandole di legno segato
+
+Exterior1st: Materiale del rivestimento esterno dell'abitazione.
+
+       AsbShng  Scandole contenenti amianto
+       AsphShn  Scandole bituminose
+       BrkComm  Mattoni comuni
+       BrkFace  Mattoni faccia a vista
+       CBlock   Blocchi di calcestruzzo con aggregati di cenere/scorie (cinder block)
+       CemntBd  Pannelli cementizi
+       HdBoard  Pannelli di fibra di legno ad alta densità (hardboard)
+       ImStucc  Finto stucco
+       MetalSd  Rivestimento metallico
+       Other    Altro
+       Plywood  Compensato
+       PreCast  Elementi prefabbricati in calcestruzzo
+       Stone    Pietra
+       Stucco   Intonaco a stucco
+       VinylSd  Rivestimento in vinile
+       Wd Sdng  Rivestimento in tavole di legno
+       WdShing  Scandole di legno
+
+Exterior2nd: Secondo materiale del rivestimento esterno, se ne è presente più di uno.
+
+       AsbShng  Scandole contenenti amianto
+       AsphShn  Scandole bituminose
+       BrkComm  Mattoni comuni
+       BrkFace  Mattoni faccia a vista
+       CBlock   Blocchi di calcestruzzo con aggregati di cenere/scorie (cinder block)
+       CemntBd  Pannelli cementizi
+       HdBoard  Pannelli di fibra di legno ad alta densità (hardboard)
+       ImStucc  Finto stucco
+       MetalSd  Rivestimento metallico
+       Other    Altro
+       Plywood  Compensato
+       PreCast  Elementi prefabbricati in calcestruzzo
+       Stone    Pietra
+       Stucco   Intonaco a stucco
+       VinylSd  Rivestimento in vinile
+       Wd Sdng  Rivestimento in tavole di legno
+       WdShing  Scandole di legno
+
+  Nota: in Exterior2nd i CSV usano Brk Cmn, CmentBd e Wd Shng al posto di
+  BrkComm, CemntBd e WdShing riportati nel documento originale.
+
+MasVnrType: Tipo di rivestimento superficiale in muratura.
+
+       BrkCmn   Mattoni comuni
+       BrkFace  Mattoni faccia a vista
+       CBlock   Blocchi di calcestruzzo con aggregati di cenere/scorie (cinder block)
+       None     Nessun rivestimento di questo tipo
+       Stone    Pietra
+
+MasVnrArea: Superficie del rivestimento in muratura, in piedi quadrati.
+
+ExterQual: Qualità dei materiali esterni.
+
+       Ex       Eccellente
+       Gd       Buona
+       TA       Nella media / tipica
+       Fa       Mediocre
+       Po       Scarsa
+
+ExterCond: Stato di conservazione attuale dei materiali esterni.
+
+       Ex       Eccellente
+       Gd       Buono
+       TA       Nella media / tipico
+       Fa       Mediocre
+       Po       Scarso
+
+Foundation: Tipo di fondazione.
+
+       BrkTil   Mattoni ed elementi in laterizio
+       CBlock   Blocchi di calcestruzzo con aggregati di cenere/scorie (cinder block)
+       PConc    Calcestruzzo gettato in opera
+       Slab     Soletta in calcestruzzo
+       Stone    Pietra
+       Wood     Legno
+
+BsmtQual: Valutazione dell'altezza interna del piano interrato/seminterrato.
+
+       Ex       Eccellente: almeno 100 pollici
+       Gd       Buona: da 90 a 99 pollici
+       TA       Tipica: da 80 a 89 pollici
+       Fa       Mediocre: da 70 a 79 pollici
+       Po       Scarsa: meno di 70 pollici
+       NA       Nessun piano interrato/seminterrato
+
+BsmtCond: Stato generale di conservazione del piano interrato/seminterrato.
+
+       Ex       Eccellente
+       Gd       Buono
+       TA       Tipico: è ammessa una lieve umidità
+       Fa       Mediocre: umidità, alcune crepe o cedimenti
+       Po       Scarso: gravi crepe, cedimenti o forte presenza di acqua/umidità
+       NA       Nessun piano interrato/seminterrato
+
+BsmtExposure: Quanto le pareti del seminterrato sono esposte all'esterno, con
+  eventuale uscita diretta o affaccio a livello del giardino.
+
+       Gd       Buona esposizione all'esterno
+       Av       Esposizione media; gli split-level e split-foyer di solito
+                hanno una valutazione media o superiore
+       Mn       Esposizione minima
+       No       Nessuna esposizione
+       NA       Nessun piano interrato/seminterrato
+
+  Nota: qui "esposizione" non indica l'orientamento nord/sud della casa.
+
+BsmtFinType1: Valutazione della prima tipologia di area rifinita del seminterrato.
+
+       GLQ      Spazio abitativo di buona qualità
+       ALQ      Spazio abitativo di qualità media
+       BLQ      Spazio abitativo di qualità inferiore alla media
+       Rec      Locale ricreativo di qualità media
+       LwQ      Qualità bassa
+       Unf      Non rifinito
+       NA       Nessun piano interrato/seminterrato
+
+BsmtFinSF1: Superficie rifinita associata a BsmtFinType1, in piedi quadrati.
+
+BsmtFinType2: Valutazione della seconda tipologia di area rifinita del seminterrato,
+  se sono presenti più tipologie.
+
+       GLQ      Spazio abitativo di buona qualità
+       ALQ      Spazio abitativo di qualità media
+       BLQ      Spazio abitativo di qualità inferiore alla media
+       Rec      Locale ricreativo di qualità media
+       LwQ      Qualità bassa
+       Unf      Non rifinito
+       NA       Nessun piano interrato/seminterrato
+
+BsmtFinSF2: Superficie rifinita associata a BsmtFinType2, in piedi quadrati.
+
+BsmtUnfSF: Superficie non rifinita del seminterrato, in piedi quadrati.
+
+TotalBsmtSF: Superficie totale del seminterrato, in piedi quadrati.
+
+Heating: Tipo di riscaldamento.
+
+       Floor    Generatore di aria calda installato sotto il pavimento
+       GasA     Generatore a gas con distribuzione di aria calda forzata
+       GasW     Riscaldamento a gas ad acqua calda o vapore
+       Grav     Generatore ad aria calda con circolazione naturale, senza ventola
+       OthW     Riscaldamento ad acqua calda o vapore con fonte diversa dal gas
+       Wall     Apparecchio di riscaldamento a parete
+
+HeatingQC: Qualità e stato di conservazione dell'impianto di riscaldamento.
+
+       Ex       Eccellente
+       Gd       Buoni
+       TA       Nella media / tipici
+       Fa       Mediocri
+       Po       Scarsi
+
+CentralAir: Presenza di aria condizionata centralizzata.
+
+       N        No
+       Y        Sì
+
+Electrical: Tipo di impianto elettrico.
+
+       SBrkr    Interruttori automatici standard e cavi tipo Romex
+       FuseA    Quadro a fusibili oltre 60 ampere e tutti i cavi tipo Romex;
+                qualità media
+       FuseF    Quadro a fusibili da 60 ampere e prevalentemente cavi Romex;
+                qualità mediocre
+       FuseP    Quadro a fusibili da 60 ampere e prevalentemente vecchi cavi
+                con isolatori e tubetti (knob-and-tube); qualità scarsa
+       Mix      Impianto misto
+
+  Nota: Romex è un tipo di cavo con guaina non metallica; knob-and-tube è un
+  sistema di cablaggio storico con conduttori separati e isolatori.
+
+1stFlrSF: Superficie del piano terra, in piedi quadrati.
+
+2ndFlrSF: Superficie del piano sopra il piano terra, in piedi quadrati.
+
+LowQualFinSF: Superficie rifinita di bassa qualità, sommata su tutti i piani,
+  in piedi quadrati.
+
+GrLivArea: Superficie abitativa fuori terra, in piedi quadrati.
+
+BsmtFullBath: Numero di bagni completi nel piano interrato/seminterrato.
+
+BsmtHalfBath: Numero di bagni di servizio nel piano interrato/seminterrato.
+
+FullBath: Numero di bagni completi nei piani fuori terra.
+
+HalfBath: Numero di bagni di servizio nei piani fuori terra.
+
+Bedroom: Numero di camere da letto nei piani fuori terra; non include le camere
+  nel seminterrato. Nome effettivo della colonna nei CSV: BedroomAbvGr.
+
+Kitchen: Numero di cucine nei piani fuori terra.
+  Nome effettivo della colonna nei CSV: KitchenAbvGr.
+
+KitchenQual: Qualità della cucina.
+
+       Ex       Eccellente
+       Gd       Buona
+       TA       Tipica / nella media
+       Fa       Mediocre
+       Po       Scarsa
+
+TotRmsAbvGrd: Numero totale di stanze nei piani fuori terra, esclusi i bagni.
+
+Functional: Funzionalità dell'abitazione. Si presume normale, salvo problemi
+  che giustifichino una valutazione inferiore.
+
+       Typ      Funzionalità tipica
+       Min1     Penalizzazione lieve, livello 1
+       Min2     Penalizzazione lieve, livello 2
+       Mod      Penalizzazione moderata
+       Maj1     Penalizzazione grave, livello 1
+       Maj2     Penalizzazione grave, livello 2
+       Sev      Gravemente danneggiata
+       Sal      Solo recupero dei materiali (salvage)
+
+Fireplaces: Numero di caminetti.
+
+FireplaceQu: Qualità del caminetto.
+
+       Ex       Eccellente: caminetto in muratura di qualità eccezionale
+       Gd       Buona: caminetto in muratura al piano principale
+       TA       Media: caminetto prefabbricato nella zona giorno principale
+                oppure caminetto in muratura nel seminterrato
+       Fa       Mediocre: caminetto prefabbricato nel seminterrato
+       Po       Scarsa: stufa tipo Benjamin Franklin
+       NA       Nessun caminetto
+
+GarageType: Tipo e posizione del garage.
+
+       2Types   Più di una tipologia di garage
+       Attchd   Garage annesso alla casa
+       Basment  Garage nel piano interrato/seminterrato
+       BuiltIn  Garage incorporato nell'edificio, tipicamente con una stanza sopra
+       CarPort  Posto auto coperto da tettoia
+       Detchd   Garage separato dalla casa
+       NA       Nessun garage
+
+GarageYrBlt: Anno di costruzione del garage.
+
+GarageFinish: Livello di finitura interna del garage.
+
+       Fin      Rifinito
+       RFn      Finitura grezza/parziale
+       Unf      Non rifinito
+       NA       Nessun garage
+
+GarageCars: Capacità del garage espressa come numero di automobili.
+
+GarageArea: Superficie del garage, in piedi quadrati.
+
+GarageQual: Qualità del garage.
+
+       Ex       Eccellente
+       Gd       Buona
+       TA       Tipica / nella media
+       Fa       Mediocre
+       Po       Scarsa
+       NA       Nessun garage
+
+GarageCond: Stato di conservazione del garage.
+
+       Ex       Eccellente
+       Gd       Buono
+       TA       Tipico / nella media
+       Fa       Mediocre
+       Po       Scarso
+       NA       Nessun garage
+
+PavedDrive: Pavimentazione del vialetto carrabile di accesso.
+
+       Y        Pavimentato
+       P        Parzialmente pavimentato
+       N        Sterrato o in ghiaia
+
+WoodDeckSF: Superficie della pedana/terrazza esterna in legno, in piedi quadrati.
+
+OpenPorchSF: Superficie del portico aperto, in piedi quadrati.
+
+EnclosedPorch: Superficie del portico o veranda chiusa, in piedi quadrati.
+
+3SsnPorch: Superficie della veranda utilizzabile per tre stagioni, generalmente
+  primavera, estate e autunno, in piedi quadrati.
+
+ScreenPorch: Superficie del portico o veranda chiusa con zanzariere,
+  in piedi quadrati.
+
+PoolArea: Superficie della piscina, in piedi quadrati.
+
+PoolQC: Qualità della piscina.
+
+       Ex       Eccellente
+       Gd       Buona
+       TA       Nella media / tipica
+       Fa       Mediocre
+       NA       Nessuna piscina
+
+Fence: Qualità e tipo di recinzione.
+
+       GdPrv    Buona protezione della privacy
+       MnPrv    Protezione minima della privacy
+       GdWo     Buona recinzione in legno
+       MnWw     Recinzione minima in legno o rete metallica
+       NA       Nessuna recinzione
+
+MiscFeature: Caratteristica aggiuntiva non descritta nelle altre categorie.
+
+       Elev     Ascensore
+       Gar2     Secondo garage, se non descritto nella sezione dei garage
+       Othr     Altro
+       Shed     Capanno/ripostiglio esterno di oltre 100 piedi quadrati
+       TenC     Campo da tennis
+       NA       Nessuna caratteristica aggiuntiva
+
+MiscVal: Valore in dollari della caratteristica aggiuntiva.
+
+MoSold: Mese della vendita, espresso come numero del mese (MM).
+
+YrSold: Anno della vendita, espresso con quattro cifre (YYYY).
+
+SaleType: Tipo di vendita.
+
+       WD       Atto di trasferimento con garanzia del titolo (Warranty Deed),
+                con finanziamento convenzionale
+       CWD      Atto di trasferimento con garanzia del titolo, pagamento in contanti
+       VWD      Atto di trasferimento con garanzia del titolo, con prestito VA
+       New      Abitazione appena costruita e venduta
+       COD      Atto tramite funzionario del tribunale / patrimonio ereditario
+       Con      Contratto con anticipo del 15% e condizioni ordinarie
+       ConLw    Contratto con anticipo ridotto e tasso d'interesse basso
+       ConLI    Contratto con tasso d'interesse basso
+       ConLD    Contratto con anticipo ridotto
+       Oth      Altro
+
+  Nota: sono categorie del sistema statunitense. Warranty Deed indica un atto
+  in cui il venditore garantisce il titolo di proprietà. VA Loan indica un
+  prestito del programma del Department of Veterans Affairs per gli aventi
+  diritto. Le descrizioni sono traduzioni orientative, non equivalenze con
+  specifici atti del diritto italiano.
+
+SaleCondition: Circostanze della vendita.
+
+       Normal   Vendita normale
+       Abnorml  Vendita anomala: permuta, vendita a seguito di pignoramento,
+                oppure vendita sotto l'importo del debito residuo (short sale)
+       AdjLand  Acquisto di terreno adiacente
+       Alloca   Due proprietà collegate con atti separati; tipicamente
+                un appartamento in condominio e un'unità garage
+       Family   Vendita tra familiari
+       Partial  Abitazione non ancora completata all'ultima valutazione;
+                categoria associata alle nuove costruzioni
